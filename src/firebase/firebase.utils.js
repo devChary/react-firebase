@@ -31,7 +31,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
                 email,
                 createdAt, ...additionalData
             })
-        } catch(error) {
+        } catch (error) {
             console.log('error creating user', error.message);
         }
     }
@@ -39,6 +39,19 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 }
 
 firebase.initializeApp(config);
+
+// export const addCollectionDocs = async (collectionKey, objects) => {
+//     const collectionRef = firestore.collection(collectionKey);
+//     const batch = firestore.batch();
+//     objects.forEach(obj => {
+//         const newDocRef = collectionRef.doc();
+//         batch.set(newDocRef, obj)
+//     });
+    
+//     // console.log(await batch.commit());
+//     return await batch.commit();
+
+// }
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
