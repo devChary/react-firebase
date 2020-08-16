@@ -19,9 +19,11 @@ import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 // import { selectCollectionsForPreview } from './redux/shop/shop.selectors'
 class App extends React.Component {
+  unsubscribeFromAuth = null;
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -38,8 +40,6 @@ class App extends React.Component {
 
     });
   }
-
-  unsubscribeFromAuth = null;
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
